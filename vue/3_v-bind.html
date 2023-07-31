@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+       
+        <input type="text" v-bind:value="value">
+
+        <img :src="picture" width="300" alt="">
+
+        <h1 :style="{color: mycolor, fontSize: '20px'}">Lorem, ipsum.</h1>
+
+        <input type="color" @change="mycolor = $event.target.value">
+       
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+           
+            data()
+            {
+                return {
+                    mycolor: 'red',
+                    value: 'some data',
+                    picture: 'https://i.pinimg.com/originals/7c/71/69/7c71692d72e780ad0f0365e072f4b5ec.jpg'
+                }
+            },
+            methods: {
+                changeTitle()
+                {
+                    this.title = 'Some new title';
+                },
+                changeTitle2(text)
+                {
+                    this.title = text;
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>

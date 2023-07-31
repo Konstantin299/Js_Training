@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+       
+        <h1 v-if="visible">Visible</h1>
+        <h2 v-else>Hidden</h2>
+
+        <h3>{{ visible ? 'Visible' : 'Hidden' }}</h3>
+
+        <p v-show="visible">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, expedita.</p>
+
+
+        <button @click="visible = !visible">Toggle</button>
+
+        <hr>
+
+        <div v-if="template == 1">
+            <h1>Template 1</h1>
+        </div>
+
+        <div v-else-if="template == 2">
+            <h1>Template 2</h1>
+            <input type="text">
+        </div>
+
+        <div v-else-if="template == 3">
+            <h2>Template 3</h2>
+            <input type="text">
+            <input type="checkbox">
+        </div>
+
+        <div v-else-if="template == 4">
+            <h2>Template 4</h2>
+            <input type="text">
+            <button>send</button>
+        </div>
+
+        <div v-else>
+            <h1>No changed template</h1>
+        </div>
+
+
+        <select name="" id="" @change="template = $event.target.value">
+            <option value="0">None</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <input type="text" @change="template = $event.target.value">
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+           
+            data()
+            {
+                return {
+                    visible: true,
+                    template: null
+                }
+            },
+            methods: {
+                changeTitle()
+                {
+                    this.title = 'Some new title';
+                },
+                changeTitle2(text)
+                {
+                    this.title = text;
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>

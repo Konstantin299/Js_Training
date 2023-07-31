@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="App">
+        <h1>{{ findPerson }}</h1>
+       <li v-for="elem in personsList"  >{{ elem.name }}</li>
+       <button @click="findName('Костя')">Найти Костю</button>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        const App = {
+            data() {
+                return{
+                    findPerson: "никто",
+                    personsList:[
+                        {name: 'Павел',age:13},
+                        {name: 'Петр',age:14},
+                        {name: 'Костя',age:22},
+                ]
+                }
+            },
+            methods:{
+                multiply(){
+                    this.count++;
+                },
+                findName(personName){
+                     findEl= this.personsList.find((el)=>{el.name == personName});  
+                     this.findPerson = ''; 
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#App');
+    </script>
+
+
+</body>
+</html>

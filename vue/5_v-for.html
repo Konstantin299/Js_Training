@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+       
+        <ul>
+            <li v-for="elem in Users">{{ elem }}</li>
+        </ul>
+
+        <hr>
+
+        <input type="text" @change="addTodo">
+
+        <ul v-if="Todos.length">
+            <li v-for="(todo, index) in Todos" @click="removeTodo(index)"  >{{ todo }}</li>
+        </ul>   
+
+        <h1 v-else>No todos</h1>
+
+
+        <ul>
+            <li v-for="num in 5">{{ num }}</li>
+        </ul>
+
+        <hr>
+
+        <input type="text" v-model="data">
+        <select name="" id="" v-model="type">
+            <option v-for="type in Types" :value="type.id">{{ type.title }}</option>
+        </select>
+
+        <button @click="addItem">Add</button>
+
+        <ul>
+            <li v-for="elem in List">
+                <div v-if="elem.type == 1">
+                    <h2>template 1</h2>
+                    <p>{{ elem.data }}</p>
+                </div>
+
+                <div v-else>
+                    <h2>template 2</h2>
+                    <p>{{ elem.data }}</p>
+                    <input type="text" :value="elem.data">
+                    <button>ok</button>
+                </div>
+            </li>
+        </ul>
+
+
+
+
+       
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+           
+            data()
+            {
+                return {
+                    Users: ['Pavel', 'Alla', 'Olga', 'Dasha', 'Oleg', 'Alex'],
+                    Todos: [],
+                    data: '',
+                    type: 1,
+                    Types: [
+                        { id: 1, title: 'Title 1' },
+                        { id: 2, title: 'Title 2' },
+                        { id: 3, title: 'Title 3' }
+                    ],
+                    List: []
+                }
+            },
+            methods: {
+                addTodo(e)
+                {
+                    this.Todos.push(e.target.value);
+                },
+                removeTodo(inx)
+                {
+                    this.Todos.splice(inx, 1);
+                },
+                addItem()
+                {
+                    this.List.push({ type: this.type, data: this.data });
+                }
+            },
+            created()
+            {
+                //fetch('url')
+            },
+            mounted()
+            {
+
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>

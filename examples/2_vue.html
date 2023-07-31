@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <style>
+
+        div
+        {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid grey;
+            margin: 10px;
+        }
+
+        button 
+        {
+            width: 100%;
+            height: 40px;
+        }
+
+        .active 
+        {
+            background: #07e;
+            color: #fff;
+        }
+
+
+
+    </style>
+
+    <section id="app">
+
+        <h1>{{ title }}</h1>
+ 
+        <div class="category">
+           
+            <button v-for="elem in getActiveCategories" :value="elem.id" :class="{ active: currentCategory == elem.id ? true : false }"   @click="currentCategory = currentCategory ? 0 : $event.target.value" >{{ elem.title }}</button>
+           
+        </div>
+        <div class="subcategory">
+            
+            <button v-for="elem in getSubCategories" :value="elem.id" :class="{active: currentSubCategory == elem.id ? true : false}" @click="currentSubCategory = currentSubCategory ? 0: $event.target.value"  >{{ elem.title }}</button>
+
+        </div>
+        <div class="items">
+            <li v-for="elem in getItems">{{ elem.title }}</li>
+        </div>
+
+
+    </section>
+   
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+     
+    const DATA = 123;
+
+      const App = {
+        data()
+        {
+            return {
+                
+                const: {
+                    a1: 1,
+                    a2: 2
+                },
+                
+
+                title: 'Some Vue title app',
+                currentCategory: 0,
+                currentSubCategory: 0,
+                Categories: [
+                    { id: 1, title: 'Category 1' },
+                    { id: 2, title: 'Category 2' },
+                    { id: 3, title: 'Category 3' },
+                ],
+
+                SubCategories: [
+                    { id: 1, title: 'Subcategory 1-1', c_id: 1 },
+                    { id: 2, title: 'Subcategory 2-1', c_id: 2 },
+                    { id: 3, title: 'Subcategory 3-1', c_id: 3 },
+                    { id: 4, title: 'Subcategory 1-2', c_id: 1 },
+                    { id: 5, title: 'Subcategory 2-2', c_id: 2 },
+                    { id: 6, title: 'Subcategory 3-2', c_id: 3 },
+                ],
+
+                Items: [
+                    { id: 1, title: 'Item 1-1', c_id: 1 },
+                    { id: 2, title: 'Item 1-2', c_id: 1 },
+                    { id: 3, title: 'Item 2-1', c_id: 2 },
+                    { id: 4, title: 'Item 3-1', c_id: 3 },
+                    { id: 5, title: 'Item 4-1', c_id: 4 },
+                    { id: 6, title: 'Item 4-2', c_id: 4 },
+                    { id: 7, title: 'Item 5-1', c_id: 5 },
+                    { id: 8, title: 'Item 6-1', c_id: 6 },
+                ]
+            }
+        },
+        computed: {
+            getActiveCategories(){
+                if(this.currentCategory != 0)
+                    return this.Categories.filter((el)=>el.id == this.currentCategory);
+                else
+                    
+                    return this.Categories;
+            },
+            getSubCategories()
+            {
+                if(this.currentCategory != 0){
+                    if(this.currentSubCategory !=0) 
+                        return this.SubCategories.filter((el) => el.id == this.currentSubCategory);
+
+                return this.SubCategories.filter((el) => el.c_id == this.currentCategory);
+                }else
+                    this.currentSubCategory = 0;
+
+                    
+            },
+            getItems()
+            {
+                if(this.currentSubCategory != 0)
+                    return this.Items.filter((el) => el.c_id == this.currentSubCategory);
+            }
+        },
+        methods: {
+            changeSubCategory(e)
+            {
+                this.currentSubCategory = e.target.value;
+            }
+        }
+    
+
+      }
+
+      Vue.createApp(App).mount('#app');
+
+
+
+
+
+
+   </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+       
+       <h1>{{ text }}</h1>
+       
+       <input type="text" @change = "text = $event.target.value">
+
+       <input type="text" v-model="text">
+
+       <hr>
+
+       <h1 v-if="role == 1">Good day admin</h1>
+
+       <h1 v-else-if="role == 2">Hello manager</h1>
+
+       <h1 v-else-if="role == 3">Hi user</h1>
+
+       <h1 v-else>Hey guest</h1>
+
+
+       <select name="" id="" v-model="role">
+        <option value="1">Admin</option>
+        <option value="2">Manager</option>
+        <option value="3">User</option>
+        <option value="4">Other</option>
+       </select>
+
+       <input type="text" v-model="role">
+
+       <hr>
+
+       <h1 v-if="visible">Visible</h1>
+
+       <input type="checkbox" v-model="visible">
+
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+           
+            data()
+            {
+                return {
+                    text: '',
+                    role: 2,
+                    visible: false
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>

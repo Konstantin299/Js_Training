@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <h2>{{ title.toUpperCase() }}</h2>
+
+        <h2 onclick="fn()"></h2>
+
+
+        <!-- event -> method -> change data (state) -> rerender html -->
+        <button v-on:click="changeTitle">change title</button>
+        <button v-on:click="changeTitle2('my new title')">{{ title }}</button>
+        <button v-on:click="changeTitle2($event.target.value)" value="my button3 text" >button3</button>
+        <button v-on:click="title = 'new text'">button4</button>
+        <button @click="title = 'new text2'">button5</button>
+        <button @click="title = title.split('').reverse().join('')">reverse</button>
+
+        <input type="text" @input="changeTitle2($event.target.value)">
+
+        <select name="" id="" @change="title = $event.target.value.toUpperCase()">
+            <option value="All">All</option>
+            <option value="TV">TV</option>
+            <option value="Laptops">Laptops</option>
+            <option value="Smartphones">Smartphones</option>
+        </select>
+
+        <h1>{{ num * eq }}</h1>
+
+        <button @click="eq+=1">Plus</button>
+
+        <a v-bind:href="url">link text</a>
+        <a :href="url"></a>
+
+        <button :style="{ color: active ? 'green' : 'grey' }" @click="active = !active" >text button</button>
+
+
+
+    </div>
+
+    <h1>{{ title }}</h1>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+            //data
+            //methods setter
+            //computed getter
+            //watch
+
+            //created //before html render
+            //mounted //after html render
+            //updated //after html rerender
+
+            //props //arguments to component
+            //components //
+
+            data()
+            {
+                return {
+                    title: 'Hello Vue.js!',
+                    num: 8,
+                    eq: 1,
+                    url: 'http://yandex.ru',
+                    active: false
+
+                }
+            },
+            methods: {
+                changeTitle()
+                {
+                    this.title = 'Some new title';
+                },
+                changeTitle2(text)
+                {
+                    this.title = text;
+                }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>
