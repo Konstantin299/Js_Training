@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+
+        .btn 
+        {
+            padding: 15px 30px;
+            border-radius: 5px;
+            border: 0;
+            background: #456;
+            color: #eee;
+            font-size: 18px;
+        }
+
+        .active 
+        {
+            background: green;
+            color: gold;
+        }
+
+
+        .red 
+        {
+            background: red;
+            color: gold;
+            font-size: 20px;
+        }
+
+        .blue 
+        {
+            background: blue;
+            color: #fff;
+            font-style: italic;
+        }
+
+        .green 
+        {
+            background: green;
+            color: grey;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+
+
+    </style>
+
+    <div id="app">
+     
+        <h1 :style="{color: 'red', fontSize: font }">Lorem, ipsum.</h1>
+
+        <h1 :style="{color: status ? 'green' : 'red', fontSize: font }" @click="status = !status">Lorem, ipsum.</h1>
+
+
+        <button :class="{btn: true, active: status}">click me</button>
+
+
+        <ul>
+            <li v-for="city in Citys"  :style="{ color: city.color, background: city.background }">{{ city.title }}</li>
+        </ul>
+
+
+        <ul>
+            <li v-for="city in Citys"  :class="city.class">{{ city.title }}</li>
+        </ul>
+
+
+
+
+
+
+    </div>
+
+  
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+
+            data()
+            {
+                return {
+                   status: false,
+                   font: '150px',
+                   Citys: [
+                    { title: 'Moscow', background: 'red', color: 'gold', class: 'red' },
+                    { title: 'Peterburg', background: 'blue', color: 'white', class: 'blue' },
+                    { title: 'Rostov', background: 'green', color: '#ccc', class: 'green' }
+                   ]
+                }
+            },
+            methods: {
+             
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>

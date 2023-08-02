@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+
+        .btn 
+        {
+            padding: 15px 30px;
+            border-radius: 5px;
+            border: 0;
+            background: #456;
+            color: #eee;
+            font-size: 18px;
+        }
+
+        .active 
+        {
+            background: green;
+            color: gold;
+        }
+
+
+        .red 
+        {
+            background: red;
+            color: gold;
+            font-size: 20px;
+        }
+
+        .blue 
+        {
+            background: blue;
+            color: #fff;
+            font-style: italic;
+        }
+
+        .green 
+        {
+            background: green;
+            color: grey;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+
+
+    </style>
+
+    <div id="app">
+     
+        <label>Title: <input type="text" v-model="city.title"></label>
+        <label>Color: <input type="color" v-model="city.color"></label>
+        <label>Background: <input type="color" v-model="city.background" value="#ffffff"></label>
+        <button @click="addCity">Add</button>
+
+        <hr>
+
+        <ul>
+            <li v-for="city in Citys" :style="{ color: city.color, background: city.background }">{{ city.title }}</li>
+        </ul>
+
+
+
+
+    </div>
+
+  
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <script>
+
+        const App = {
+
+            data()
+            {
+                return {
+                   Citys: [],
+                   city: {
+                    title: '',
+                    color: 'black',
+                    background: 'white'
+                   }
+                }
+            },
+            methods: {
+             addCity()
+             {
+                this.Citys.push({ ...this.city });
+             }
+            }
+        }
+
+        Vue.createApp(App).mount('#app');
+
+
+
+
+    </script>
+
+
+
+    
+</body>
+</html>
